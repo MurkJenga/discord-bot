@@ -1,7 +1,6 @@
 import requests as r
 from dotenv import load_dotenv
 import os
-import json
 
 load_dotenv()
 
@@ -16,4 +15,17 @@ def send_json_request(data, endpoint):
     
     except r.exceptions.RequestException as e:
         print(f"Error sending request: {e}")
-        return None 
+        return None  
+
+def returnJsonResponse(endpoint):
+    try:
+        response = r.get(
+            os.getenv('API_URL') + '/' + endpoint, 
+            headers = {'x-api-key': os.getenv('API_KEY')}
+            )
+        response.raise_for_status()   
+        return response.json()
+    
+    except r.exceptions.RequestException as error:
+        print('Error fetching JSON:', error)
+        raise
