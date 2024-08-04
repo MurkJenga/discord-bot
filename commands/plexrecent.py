@@ -52,6 +52,9 @@ class PlexRecent(commands.Cog):
                     )
                     embed = create_embed(f'Other Plex Movie additions in the last {days} days:', formatted_movies, random_color())
                     await interaction.followup.send(embed=embed)
+            else:
+                embed = create_embed(f'No movies added in the last {days} days:', 'Try increasing the days requested.', random_color())
+                await interaction.followup.send(embed=embed)
 
         except Exception as e:
             print(f"Error searching Plex movie library: {e}")

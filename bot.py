@@ -48,30 +48,29 @@ class Bot(commands.Bot):
             await self.tree.sync()
         print("Commands synced!")
 
-    async def on_message(self, message): 
-
+    async def on_message(self, message):  
         msg = {
-            "channelId": message.channel.id,
-            "guildId": message.guild.id,
-            "messageId": message.id,
+            "channelId": str(message.channel.id),
+            "guildId": str(message.guild.id),
+            "messageId": str(message.id),
             "createdTime": change_tz(message.created_at, -5),
             "content": message.content,
             "ogContent": message.content,
-            "authorId": message.author.id,
+            "authorId": str(message.author.id),
             #"jump_url": message.jump_url,
             #"mention_everyone": message.mention_everyone,
             #"mentions": message.mentions
         } 
                              
         if 'peter' in message.content.lower() and 'mom' in message.content.lower():
-            await message.add_reaction(os.getenv('PETERS_MOM'))
+            await message.add_reaction(os.getenv('PETERS_MOM')) 
 
-        send_json_request(msg, 'message/insertmessage')
-        logger(message.author, 'created', msg["messageId"], msg["createdTime"]) 
+        send_json_request(msg, 'message/insertmessage') 
+        logger(message.author, 'created', msg["messageId"], msg["createdTime"])  
 
     async def on_message_delete(self, message):
         msg = {
-            "messageId": message.id 
+            "messageId": str(message.id)
         }
 
         send_json_request(msg, 'message/deletemessage')
@@ -82,11 +81,11 @@ class Bot(commands.Bot):
         msg = {
             "updated_time": get_date_time(True),
             "content": after.content, 
-		    "messageId": after.id
+		    "messageId": str(after.id)
         }
         send_json_request(msg, 'message/updatemessage') 
 
-    async def on_reaction_add(self, reaction, user): 
+    async def on_reaction_add(self, reaction, user):  
         emoji_data = get_emoji_data(reaction.emoji)
         msg = {
             "userId": str(user.id),
@@ -111,4 +110,4 @@ class Bot(commands.Bot):
         } 
 
         send_json_request(msg, 'emoji/updateemoji') 
-        logger(user, 'removed reaction', reaction.message.id, get_date_time(True), reaction) 
+        logger(user, 'removed reaction', reaction.message.id, get_date_time(True), reaction)  

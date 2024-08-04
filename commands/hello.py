@@ -6,7 +6,7 @@ class HelloCommand(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @app_commands.command(name='hiya', description='Says hi to the peasants')
+    @app_commands.command(name='hello', description='Says hi to the peasants')
     async def hello(self, interaction: discord.Interaction):
         await interaction.response.send_message(f'Hi, {interaction.user.mention}')
 

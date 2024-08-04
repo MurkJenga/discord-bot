@@ -13,6 +13,9 @@ def get_date_time(formatted=False):
         return now.strftime("%Y-%m-%d %H:%M:%S")
     return now 
 
+def get_date(): 
+    return datetime.today().strftime('%Y-%m-%d')
+
 def change_tz(datetime, hours):
     return (datetime + timedelta(hours=hours)).strftime("%Y-%m-%d %H:%M:%S")
 

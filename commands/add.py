@@ -11,7 +11,7 @@ class AddCommand(commands.Cog):
     async def add(
         self,
         interaction: discord.Interaction,
-        first: app_commands.Range[int, 0, 100],
+        first: app_commands.Range[int, 0, None],
         second: app_commands.Range[int, 0, None],
     ):
         """Adds two numbers together"""
