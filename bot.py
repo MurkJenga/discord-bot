@@ -13,7 +13,7 @@ class Bot(commands.Bot):
         intents = discord.Intents.all()
         super().__init__(command_prefix=command_prefix, intents=intents, **options)
         self.command_directory = command_directory
-        self.guild_ids = guild_ids or [int(os.getenv('GUILD_ID'))]   
+        self.guild_ids = [int(os.getenv('GUILD_ID'))]   
 
     async def setup_hook(self):
         await self.load_and_sync_commands()

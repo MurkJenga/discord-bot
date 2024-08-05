@@ -17,10 +17,10 @@ class RandomNumCommand(commands.Cog):
         end_num: app_commands.Range[int, 0, None],
     ):
         if begin_num > end_num:
-            embed = create_embed(f'{interaction.user.mention}, your end number is larger than your beginning number.', '', random_color()) 
+            embed = create_embed(f'{interaction.user.mention}, your end number ({end_num}), is larger than your beginning number,{begin_num}.', '', random_color()) 
             await interaction.response.send_message(embed=embed, ephemeral=False)
         else:
-            embed = create_embed(f'Your random number is:', f'{random.randint(begin_num, end_num)}', random_color()) 
+            embed = create_embed(f'Your random number between {begin_num} and {end_num} is:', f'{random.randint(begin_num, end_num)}', random_color()) 
             await interaction.response.send_message(embed=embed, ephemeral=False)
             #await interaction.response.send_message(f'{interaction.user.mention}, your number is {random.randint(begin_num, end_num)}')
 
