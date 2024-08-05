@@ -77,3 +77,20 @@ def random_color():
     color_1, color_2, color_3 = random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
     color = discord.Color.from_rgb(color_1, color_2, color_3) 
     return color
+
+def mom_reply():
+     random_replies = [
+        'Milk, milk, lemonade, \'round the corner fudge is made', 
+        'She gave me a rimjob', 
+        'Now both of them can call me \'daddy\'', 
+        'I be destroying her ass', 
+        'I bang her harder than a screen door in a hurricane', 
+        'She know who really gives it to her good', 
+        'Best door mat I\'ve ever found on the side of the road', 
+        'I\'ve been considering a better model lately', 
+        'Should be illegal for ass to be that easy',
+        'I fucked her like Heath Ledger fucked Jake Gyllenhaal in Brokeback Mountain.'
+     ]
+     reply = random.choice(random_replies)
+
+     return reply

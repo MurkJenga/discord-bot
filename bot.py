@@ -3,7 +3,7 @@ import os
 from discord.ext import commands
 from dotenv import load_dotenv
 from utils.logging import logger, edit_logger
-from utils.helper import get_date_time, change_tz, get_emoji_data
+from utils.helper import get_date_time, change_tz, get_emoji_data, mom_reply
 from utils.api_functions import send_json_request
 
 load_dotenv()
@@ -56,14 +56,12 @@ class Bot(commands.Bot):
             "createdTime": change_tz(message.created_at, -5),
             "content": message.content,
             "ogContent": message.content,
-            "authorId": str(message.author.id),
-            #"jump_url": message.jump_url,
-            #"mention_everyone": message.mention_everyone,
-            #"mentions": message.mentions
+            "authorId": str(message.author.id)
         } 
                              
         if 'peter' in message.content.lower() and 'mom' in message.content.lower():
             await message.add_reaction(os.getenv('PETERS_MOM')) 
+            await message.reply(mom_reply())
 
         send_json_request(msg, 'message/insertmessage') 
         logger(message.author, 'created', msg["messageId"], msg["createdTime"])  
