@@ -9,5 +9,5 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 if __name__ == "__main__": 
-    bot = Bot(guild_ids=[969408146978275330]  )
+    bot = Bot(guild_ids=[int(os.getenv('GUILD_ID'))]  )
     bot.run(os.getenv('BOT_TOKEN'))
