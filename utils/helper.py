@@ -89,7 +89,9 @@ def mom_reply():
         'Best door mat I\'ve ever found on the side of the road', 
         'I\'ve been considering a better model lately', 
         'Should be illegal for ass to be that easy',
-        'I fucked her like Heath Ledger fucked Jake Gyllenhaal in Brokeback Mountain.'
+        'I fucked her like Heath Ledger fucked Jake Gyllenhaal in Brokeback Mountain.',
+        'I took that hobbit to Isengard.',
+        'You’d be surprised by how tight that pussy is after 6 kids and 50 years of making love to Guy.'
      ]
      reply = random.choice(random_replies)
 
