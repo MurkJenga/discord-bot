@@ -91,7 +91,13 @@ def mom_reply():
         'Should be illegal for ass to be that easy',
         'I fucked her like Heath Ledger fucked Jake Gyllenhaal in Brokeback Mountain.',
         'I took that hobbit to Isengard.',
-        'You’d be surprised by how tight that pussy is after 6 kids and 50 years of making love to Guy.'
+        'You\'d be surprised by how tight that pussy is after 6 kids and 50 years of making love to Guy.',
+        'She is so wise in the bedroom',
+        'She massaged my prostate',
+        'I wore a Peter mask to make it extra weird. She most appreciated the nose.',
+        'She was so reassuring and comforting when I ejaculated prematurely.',
+        'We 69\'d in Peter\'s old bedroom.',
+        'She roared like a lioness in heat.'
      ]
      reply = random.choice(random_replies)
 
