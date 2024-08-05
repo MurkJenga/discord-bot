@@ -97,7 +97,8 @@ def mom_reply():
         'I wore a Peter mask to make it extra weird. She most appreciated the nose.',
         'She was so reassuring and comforting when I ejaculated prematurely.',
         'We 69\'d in Peter\'s old bedroom.',
-        'She roared like a lioness in heat.'
+        'She roared like a lioness in heat.',
+        'I put two starbursts up her hole and fished them out again with my tongue.'
      ]
      reply = random.choice(random_replies)
 
