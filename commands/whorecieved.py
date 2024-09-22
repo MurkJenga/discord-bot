@@ -17,10 +17,10 @@ class WhoRecieved(commands.Cog):
         emoji: str,
         user: discord.Member
     ):
-        data = returnJsonResponse(f'emoji/whorecieved/{user.id}/{emoji}') 
+        data = returnJsonResponse(f'command/whorecieved/{user.id}/{emoji}') 
         
         if data:
-            data = '\n'.join(row['stats'] for row in data)
+            data = '\n'.join(row[0] for row in data)
         else:
             data = 'No data recorded'
 

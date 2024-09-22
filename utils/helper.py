@@ -103,3 +103,27 @@ def mom_reply():
      reply = random.choice(random_replies)
 
      return reply
+
+def parse_data(column):
+    article = {
+        'headline': '', 
+        'body': [],
+        'link': '',
+        'image': ''
+    }
+    
+    headline = column.select_one('h1:not([class*="sponsored"])')
+    if headline:
+        article['headline'] = headline.get_text(strip=True) 
+    
+    article['body'] = '\n\n'.join([p.get_text(strip=True) for p in column.find_all('p')])
+    
+    first_link = column.find('a')
+    if first_link and 'href' in first_link.attrs and first_link['href'] != '#': 
+        article['link'] = first_link['href']
+    
+    image = column.find('img')
+    if image and 'src' in image.attrs:
+        article['image'] = image['src']
+    
+    return article

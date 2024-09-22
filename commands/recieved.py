@@ -16,10 +16,10 @@ class Recieved(commands.Cog):
         interaction: discord.Interaction,
         emoji: str
     ):
-        data = returnJsonResponse(f'emoji/recieved/{emoji}')
+        data = returnJsonResponse(f'command/recieved/{emoji}')
 
         if len(data):
-            data = '\n'.join(row['stats'] for row in data)
+            data = '\n'.join(row[0] for row in data)
         else:
             data = 'No data recorded'
 

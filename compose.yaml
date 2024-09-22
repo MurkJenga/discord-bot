@@ -13,7 +13,7 @@ services:
 
   expressjs-server:
     build:
-      context: /Users/james/Documents/api-typescript/ExpressJs
+      context: /Users/james/Documents/Projects/discord-web-api
     ports:
       - "3000:3000"
     networks:

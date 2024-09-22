@@ -17,7 +17,7 @@ class BotRequest(commands.Cog):
                 "request_text": prompt,
                 "request_time": get_date_time(True)
                 }
-            send_json_request(data, 'request')
+            send_json_request(data, 'command/botrequest')
             embed = create_embed(f'Bot Request:', prompt, random_color())
             await interaction.response.send_message(embed=embed)
 

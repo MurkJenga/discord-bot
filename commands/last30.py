@@ -16,21 +16,21 @@ class Last30(commands.Cog):
         interaction: discord.Interaction,
         user: discord.Member
     ):
-        data = returnJsonResponse(f'user/last30/{user.id}')
+        data = returnJsonResponse(f'command/user/last30/{user.id}')
 
         if len(data):
             data = {
-                "user_id" : data[0]["user_id"],
-                "username" : data[0]["username"],
-                "join_date" : data[0]["joinDate"],
-                "total_msgs" : format(data[0]["totalMsgs"], ','),
-                "avg_words" : data[0]["averageWrds"],
-                "last_msg" : data[0]["lastMsg"],
-                "total_wrds" : format(int(data[0]["totalWrds"]), ','),
-                "avg_per_day" : data[0]["avgPerDay"],
-                "react_giv" : format(data[0]["reactGiv"], ','),
-                "react_rec" : format(data[0]["reactRec"], ','),
-                "top_react" : data[0]["topReact"]
+                "user_id" : data[0][0],
+                "username" : data[0][1],
+                "join_date" : data[0][2],
+                "total_msgs" : format(data[0][3], ','),
+                "avg_words" : data[0][4],
+                "last_msg" : data[0][5],
+                "total_wrds" : format(int(data[0][6]), ','),
+                "avg_per_day" : data[0][7],
+                "react_giv" : format(data[0][8], ','),
+                "react_rec" : format(data[0][9], ','),
+                "top_react" : data[0][10] 
             }
             embed = create_embed(f'{user}\'s stats for the last 30 days', 'Moms Basement Stats Below', random_color()) 
             embed.add_field(name="Join Date", value= data["join_date"], inline=True)

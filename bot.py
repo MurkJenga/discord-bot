@@ -63,7 +63,7 @@ class Bot(commands.Bot):
             await message.add_reaction(os.getenv('PETERS_MOM')) 
             await message.reply(mom_reply())
 
-        send_json_request(msg, 'message/insertmessage') 
+        send_json_request(msg, 'message/insert') 
         logger(message.author, 'created', msg["messageId"], msg["createdTime"])  
 
     async def on_message_delete(self, message):
@@ -71,7 +71,7 @@ class Bot(commands.Bot):
             "messageId": str(message.id)
         }
 
-        send_json_request(msg, 'message/deletemessage')
+        send_json_request(msg, 'message/delete')
         logger(message.author, 'deleted', msg["messageId"], get_date_time(True))
 
     async def on_message_edit(self, before, after):
@@ -81,7 +81,7 @@ class Bot(commands.Bot):
             "content": after.content, 
 		    "messageId": str(after.id)
         }
-        send_json_request(msg, 'message/updatemessage') 
+        send_json_request(msg, 'message/update') 
 
     async def on_reaction_add(self, reaction, user):  
         emoji_data = get_emoji_data(reaction.emoji)
@@ -95,7 +95,7 @@ class Bot(commands.Bot):
             "updateTIme": get_date_time(True)
         } 
 
-        send_json_request(msg, 'emoji/insertemoji') 
+        send_json_request(msg, 'emoji/insert') 
         logger(user, 'added reaction', reaction.message.id, get_date_time(True), reaction)
 
     async def on_reaction_remove(self, reaction, user):
@@ -107,5 +107,5 @@ class Bot(commands.Bot):
             "emojiName": emoji_data["name"]
         } 
 
-        send_json_request(msg, 'emoji/updateemoji') 
+        send_json_request(msg, 'emoji/delete') 
         logger(user, 'removed reaction', reaction.message.id, get_date_time(True), reaction)  

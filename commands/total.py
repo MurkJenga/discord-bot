@@ -24,18 +24,16 @@ class Total(commands.Cog):
             reg = '^\\d{4}-\\d{2}-\\d{2}$'
             return date if re.search(reg, date) else None
         
-        if validate_date(date):
-            print(date)
-            data = returnJsonResponse(f'message/total/{date}')
-
+        if validate_date(date): 
+            data = returnJsonResponse(f'command/total/{date}') 
             if len(data):
-                data = '\n'.join(row['stats'] for row in data)
+                data =  '\n'.join(row[0] for row in data)
             else:
                 data = 'No data recorded'
 
             embed = create_embed(f'Total Messages Per User As Of {date}:', data, random_color()) 
             await interaction.response.send_message(embed=embed, ephemeral=False)
-        
+            
         else:
             embed = create_embed(f'The value, {date}, is not valid. Format the date as yyyy-mm-dd.', '', random_color()) 
             await interaction.response.send_message(embed=embed, ephemeral=False)

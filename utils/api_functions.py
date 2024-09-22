@@ -8,7 +8,7 @@ def send_json_request(data, endpoint):
     url = os.getenv('API_URL') + '/' + endpoint
     headers = {
         'Content-Type': 'application/json',
-        'x-api-key': os.getenv('API_KEY')
+        #'x-api-key': os.getenv('API_KEY')
     }
     try:
         response = r.post(url, headers=headers, json=data) 
@@ -21,7 +21,7 @@ def returnJsonResponse(endpoint):
     try:
         response = r.get(
             os.getenv('API_URL') + '/' + endpoint, 
-            headers = {'x-api-key': os.getenv('API_KEY')}
+            #headers = {'x-api-key': os.getenv('API_KEY')}
             )
         response.raise_for_status()   
         return response.json()
