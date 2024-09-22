@@ -9,13 +9,13 @@ services:
     networks:
       - app-network
     depends_on:
-      - expressjs-server
+      - discord-web-api
 
-  expressjs-server:
+  discord-web-api:
     build:
       context: /Users/james/Documents/Projects/discord-web-api
     ports:
-      - "3000:3000"
+      - "5001:5000"
     networks:
       - app-network
 
