@@ -23,11 +23,7 @@ class Brew(commands.Cog):
 
             articles = [parse_data(column) for column in column_elements]
 
-            for article in articles:
-                if article['headline']:
-                    print("\n---\n")
-                    print(article)
-            
+            for article in articles:            
                 if article['headline']: 
                     embed = discord.Embed(title=f'Morning Brew - {get_date()}', description='', color=random_color())
                     embed.add_field(name="Headline", value= article["headline"], inline=False)

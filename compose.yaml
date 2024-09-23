@@ -7,17 +7,19 @@ services:
     env_file:
       - .env
     networks:
-      - app-network
+      - app-network  # Ensure both services share this network
     depends_on:
       - discord-web-api
 
   discord-web-api:
     build:
       context: /Users/james/Documents/Projects/discord-web-api
+    env_file:
+      - .env
     ports:
       - "5001:5000"
     networks:
-      - app-network
+      - app-network  # Same network here
 
 networks:
   app-network:
