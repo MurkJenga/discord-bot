@@ -19,7 +19,7 @@ class Brew(commands.Cog):
 
             soup = BeautifulSoup(html_content, 'lxml')  
 
-            column_elements = soup.find_all('td', class_='column')  
+            column_elements = soup.find_all('td', class_='card')  
 
             articles = [parse_data(column) for column in column_elements]
 
