@@ -20,9 +20,11 @@ class Dropdown(discord.ui.Select):
         url = "https://www.morningbrew.com/daily/issues/latest"
         response = requests.get(url)
         html_content = response.text
+        column_elements = None
 
         soup = BeautifulSoup(html_content, 'lxml')
-        column_elements = soup.find_all('td', class_='card')
+
+        column_elements = soup.find_all('td', class_='card') if soup.find_all('td', class_='card') else soup.find_all('td', class_='column')
         
         articles = [parse_data(column) for column in column_elements]
         return articles
