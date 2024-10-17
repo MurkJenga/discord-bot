@@ -4,7 +4,6 @@ from discord import app_commands
 from utils.api_functions import returnJsonResponse
 from utils.helper import create_embed, random_color
 
-
 class Recieved(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
