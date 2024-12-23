@@ -49,6 +49,8 @@ class Bot(commands.Bot):
         print("Commands synced!")
 
     async def on_message(self, message):  
+        if message.author == self.user:
+            return 
         msg = {
             "channelId": str(message.channel.id),
             "guildId": str(message.guild.id),
