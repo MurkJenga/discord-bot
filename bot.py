@@ -1,5 +1,4 @@
-import discord
-import os
+import discord, logging, os 
 from discord.ext import commands
 from dotenv import load_dotenv
 from utils.logging import logger, edit_logger
@@ -33,8 +32,10 @@ class Bot(commands.Bot):
                     if cog:
                         for command in cog.get_app_commands():
                             print(f'  - Loaded command: {command.name}')
+                            logging.info(f'  - Loaded command: {command.name}')
                 except Exception as e:
                     print(f'Failed to load extension {extension}.')
+                    logging.info(f'Failed to load extension {extension}.')
                     print(f'Error: {e}')
 
         print("Syncing commands...")
