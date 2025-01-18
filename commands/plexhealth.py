@@ -3,6 +3,7 @@ from discord.ext import commands, tasks
 from discord import app_commands
 from dotenv import load_dotenv
 from utils.helper import create_embed, random_color
+from utils.api_functions import returnJsonResponse, send_json_request
 
 load_dotenv()
 utc = datetime.timezone.utc
@@ -89,7 +90,21 @@ class PlexHealth(commands.Cog):
                 except discord.Forbidden:
                     logging.error(f"Could not send message to {user.name}")
             else: 
-                logging.info(f'{server["server"]} - Server is up, not sending message')
+                server_name = 'james' if server['user_id'] == 553337834090659899 else 'jake'
+                previous_plex_status = returnJsonResponse(f'command/plex/status/{server_name}')
+
+                if previous_plex_status[0][0] == 1:
+                    
+                    status_embed = create_embed(
+                        "Plex Restored:",
+                        f"🟢  Plex availability for {server['server']} has been restored",
+                        random_color()
+                    )
+                    send_json_request(f"Updating {server['server']} status", f'command/plex/update/{server_name}/0')
+                    await user.send(embed=status_embed)
+                    logging.info(f'Sent message to {server_name} for Plex Server restoration')
+                else:
+                    logging.info(f'{server["server"]} - Server is up, not sending message')
 
 async def setup(bot):
     await bot.add_cog(PlexHealth(bot))
