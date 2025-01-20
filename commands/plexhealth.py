@@ -20,12 +20,14 @@ class PlexHealth(commands.Cog):
             {
                 'server': 'James\' Server',
                 'heartbeat_id': 2875545,
-                'user_id': 553337834090659899
+                'user_id': 553337834090659899,
+                'name': 'james'
             },
             {
                 'server': 'Jake\' Server',
                 'heartbeat_id': 2876528,
-                'user_id': 284405732395188233
+                'user_id': 284405732395188233,
+                'name': 'jake'
             }
         ]
         self.status_check.start()
@@ -71,7 +73,7 @@ class PlexHealth(commands.Cog):
         else:
             return f"{server['server']} - 🔴 Down"
     
-    @tasks.loop(hours=1)
+    @tasks.loop(minutes=1)
     async def status_check(self):
         for server in self.servers:
             response = await self.ping_betterstack(server)
@@ -86,13 +88,12 @@ class PlexHealth(commands.Cog):
             user = await self.bot.fetch_user(server['user_id'])  
             if status != 'up':
                 try:
+                    send_json_request(f"Updating {server['server']} status to down", f"command/plex/update/{server['name']}/1")
                     await user.send(embed=embed)  
                 except discord.Forbidden:
                     logging.error(f"Could not send message to {user.name}")
             else: 
-                server_name = 'james' if server['user_id'] == 553337834090659899 else 'jake'
-                previous_plex_status = returnJsonResponse(f'command/plex/status/{server_name}')
-
+                previous_plex_status = returnJsonResponse(f"command/plex/status/{server['name']}")
                 if previous_plex_status[0][0] == 1:
                     
                     status_embed = create_embed(
@@ -100,9 +101,9 @@ class PlexHealth(commands.Cog):
                         f"🟢  Plex availability for {server['server']} has been restored",
                         random_color()
                     )
-                    send_json_request(f"Updating {server['server']} status", f'command/plex/update/{server_name}/0')
+                    send_json_request(f"Updating {server['server']} status to back up", f"command/plex/update/{server['name']}/0")
                     await user.send(embed=status_embed)
-                    logging.info(f'Sent message to {server_name} for Plex Server restoration')
+                    logging.info(f"Sent message to {server['name']} for Plex Server restoration")
                 else:
                     logging.info(f'{server["server"]} - Server is up, not sending message')
 
