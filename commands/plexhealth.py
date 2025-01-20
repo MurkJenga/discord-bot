@@ -73,7 +73,7 @@ class PlexHealth(commands.Cog):
         else:
             return f"{server['server']} - 🔴 Down"
     
-    @tasks.loop(minutes=1)
+    @tasks.loop(hours=1)
     async def status_check(self):
         for server in self.servers:
             response = await self.ping_betterstack(server)
