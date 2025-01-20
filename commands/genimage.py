@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-from utils.helper import generate_ai_image, create_embed, random_color
+from utils.helper import generate_ai_image, create_embed, random_color, getimagai
 
 class GenImage(commands.Cog):
     def __init__(self, bot):
@@ -13,7 +13,7 @@ class GenImage(commands.Cog):
         await interaction.response.defer() 
         try: 
             embed = create_embed(f'Text Used To Generate Image:', prompt, random_color()) 
-            embed.set_image(url=generate_ai_image(prompt))
+            embed.set_image(url=getimagai(prompt))
             await interaction.followup.send(embed=embed)
 
         except Exception as e:

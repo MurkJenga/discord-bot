@@ -1,9 +1,6 @@
 from datetime import datetime, timedelta
-import discord
-import openai
-import os 
-from dotenv import load_dotenv
-import random
+import discord, openai, os, random, requests, json
+from dotenv import load_dotenv 
 
 load_dotenv()
 
@@ -45,6 +42,21 @@ def generate_chat_completion(prompt):
         max_tokens=2000
     )
     return response.choices[0].message['content'].strip()
+
+def getimagai(prompt):
+     
+    url = 'https://api.getimg.ai/v1/essential-v2/text-to-image'
+    token = os.getenv('GETIMG_KEY')
+    headers = {    'Authorization': f'Bearer {token}',
+                    'Content-Type': 'application/json'}
+    data = {
+        "prompt": prompt,
+        "response_format": "url"
+        }
+
+    response = requests.post(url, headers=headers, data=json.dumps(data)) 
+    json_response = response.json() 
+    return json_response['url'] 
 
 def generate_chat_completion(prompt):
     openai.api_key = os.getenv('CHATGPT_KEY')
